@@ -18,19 +18,15 @@ const SignInForm = () => {
     const onSubmitHandler = (e) => {
         e.preventDefault()
         document.getElementById('signIn').reset()
+        setSendButtonState({email: true, pass: true})
 
-        for (let i = 0; i < cart.length; i++) {
-            if (cart[i].email === userData.email) {
-                if (cart[i].pass === userData.pass) {
-                    console.log(cart[i], 'найденный аккаунт')
-                    alert('You have successfully authorised!')
-                }
-                else alert('Incorrect password!')
-                setSendButtonState({email: true, pass: true})
+        for (let i = 0; i < cart.length; i++)
+            if (cart[i].email === userData.email && cart[i].pass === userData.pass) {
+                console.log(cart[i], 'найденный аккаунт')
+                alert('You have successfully authorised!')
                 return
             }
-        }
-        alert('Your email was not found!')
+        alert('Incorrect email or password!')
     }
 
     return (
